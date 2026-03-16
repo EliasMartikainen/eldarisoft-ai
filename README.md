@@ -87,7 +87,7 @@ eldarisoft-ai/
 3. **Immediately** go to **Settings → Billing → Usage limits**
 4. Set **Monthly spend limit: $5** and **Alert at: $2**
 
-> ⚠️ Do this before going live. When the $5 limit is hit, the API stops responding automatically — no surprise invoices.
+>  Do this before going live. When the $5 limit is hit, the API stops responding automatically — no surprise invoices.
 
 ### 2. Cloudflare Worker
 
@@ -148,14 +148,14 @@ Value: YOURNAME.github.io     ← GitHub Pages
 
 ## Pre-launch checklist
 
-- [ ] Normal message works end-to-end
-- [ ] Long message (500+ chars) is blocked gracefully
-- [ ] Rate limit activates after 20 rapid messages
-- [ ] Empty message doesn't send
-- [ ] Works on mobile (iOS Safari + Android Chrome)
-- [ ] Works on Safari, Chrome, Firefox
-- [ ] API key is invisible in browser DevTools (Network tab)
-- [ ] Spending cap is set in Anthropic Console
+- Normal message works end-to-end
+- Long message (500+ chars) is blocked gracefully
+- Rate limit activates after 20 rapid messages
+- Empty message doesn't send
+- Works on mobile (iOS Safari + Android Chrome)
+- Works on Safari, Chrome, Firefox
+- API key is invisible in browser DevTools (Network tab)
+- Spending cap is set in Anthropic Console
 
 ---
 
