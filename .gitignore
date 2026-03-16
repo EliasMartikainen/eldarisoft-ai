@@ -1,0 +1,6 @@
+node_modules/
+.env
+*.b64
+assets/logo-white.b64
+.wrangler/
+.claude/

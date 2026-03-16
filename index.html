@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fi" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Eldarisoft AI – kokeile miltä yrityksesi oma AI-assistentti voisi tuntua." />
+  <title>Eldarisoft AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232563EB'/><text y='.9em' font-size='70' x='15' fill='white'>E</text></svg>" />
+</head>
+<body>
+
+  <!-- ── Sidebar ───────────────────────────────────────────────── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-top">
+      <a href="https://www.eldarisoft.fi" class="brand" target="_blank" rel="noopener">
+        <div class="logo-mark">E:\</div>
+        <span class="brand-name">Eldarisoft</span>
+      </a>
+
+      <a href="https://www.eldarisoft.fi" target="_blank" rel="noopener" class="cta-btn">
+        Tilaa oma chatbotti
+      </a>
+    </div>
+
+    <div class="sidebar-mid">
+      <div class="sidebar-label">Demo-info</div>
+      <div class="sidebar-note">
+        Oikeassa toteutuksessa tämä AI koulutetaan <strong>teidän yrityksenne</strong> tietoihin – tuotteisiin, palveluihin ja asiakaspalvelukäsikirjoihin.
+      </div>
+    </div>
+
+    <div class="sidebar-bottom">
+      <p class="sidebar-tagline">Räätälöityjä AI-ratkaisuja yrityksille</p>
+      <a href="https://www.eldarisoft.fi" target="_blank" rel="noopener" class="sidebar-contact-link">eldarisoft.fi &rarr;</a>
+      <button id="darkToggle" class="theme-btn">
+        <svg id="iconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg id="iconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <span id="themeLabel">Vaalea tila</span>
+      </button>
+      <div class="live-pill">
+        <span class="live-dot"></span>
+        Live demo
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── Chat area ─────────────────────────────────────────────── -->
+  <div class="chat-area">
+
+    <!-- Mobile header -->
+    <div class="mobile-header">
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Valikko">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <div class="mobile-brand">
+        <div class="logo-mark">E:\</div>
+        <span class="brand-name">Eldarisoft AI</span>
+      </div>
+      <div class="live-pill compact">
+        <span class="live-dot"></span>
+      </div>
+    </div>
+
+    <!-- Welcome screen -->
+    <div class="welcome-screen" id="welcomeScreen">
+      <div class="logo-mark welcome-logo-mark">E:\</div>
+      <h1 class="welcome-title">Eldarisoft AI</h1>
+      <p class="welcome-sub">Kokeile miltä yrityksesi oma AI voisi tuntua</p>
+      <div class="welcome-chips">
+        <button class="chip" onclick="sendChip('Mitä Eldarisoft tekee?')">Mitä Eldarisoft tekee?</button>
+        <button class="chip" onclick="sendChip('Miten AI voi auttaa yritystäni?')">Miten AI voi auttaa yritystäni?</button>
+        <button class="chip" onclick="sendChip('Näytä esimerkki chatbotin vastauksesta')">Näytä esimerkki</button>
+      </div>
+    </div>
+
+    <!-- Messages -->
+    <div class="messages" id="chatWindow" role="log" aria-live="polite"></div>
+
+    <!-- Input bar -->
+    <div class="input-bar">
+      <div class="input-inner">
+        <textarea
+          id="messageInput"
+          class="message-input"
+          placeholder="Lähetä viesti Eldarisoft AI:lle..."
+          rows="1"
+          maxlength="500"
+          aria-label="Viesti"
+          autocomplete="off"
+        ></textarea>
+        <div class="input-actions">
+          <span class="char-count" id="charCount"></span>
+          <button id="sendBtn" class="send-btn" type="button" aria-label="Lähetä" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="input-footer">
+        <kbd>Enter</kbd> lähettää &nbsp;·&nbsp; <kbd>Shift+Enter</kbd> uusi rivi
+        &nbsp;·&nbsp; Powered by <a href="https://www.eldarisoft.fi" target="_blank" rel="noopener">Eldarisoft AI</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Mobile sidebar overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <script src="app.js"></script>
+  <script>
+    /* Theme */
+    const html  = document.documentElement;
+    const btn   = document.getElementById('darkToggle');
+    const moon  = document.getElementById('iconMoon');
+    const sun   = document.getElementById('iconSun');
+    const label = document.getElementById('themeLabel');
+    function applyTheme(dark) {
+      html.setAttribute('data-theme', dark ? 'dark' : 'light');
+      moon.style.display = dark ? 'none' : 'block';
+      sun.style.display  = dark ? 'block' : 'none';
+      label.textContent  = dark ? 'Vaalea tila' : 'Tumma tila';
+    }
+    applyTheme(localStorage.getItem('theme') !== 'light');
+    btn.addEventListener('click', () => {
+      const dark = html.getAttribute('data-theme') === 'dark';
+      localStorage.setItem('theme', dark ? 'light' : 'dark');
+      applyTheme(!dark);
+    });
+
+    /* Mobile menu */
+    const sidebar  = document.getElementById('sidebar');
+    const overlay  = document.getElementById('sidebarOverlay');
+    const menuBtn  = document.getElementById('mobileMenuBtn');
+    function openSidebar()  { sidebar.classList.add('open'); overlay.classList.add('visible'); }
+    function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('visible'); }
+    menuBtn.addEventListener('click', openSidebar);
+    overlay.addEventListener('click', closeSidebar);
+  </script>
+</body>
+</html>
