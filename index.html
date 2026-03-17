@@ -6,9 +6,10 @@
   <meta name="description" content="Eldarisoft AI – kokeile miltä yrityksesi oma AI-assistentti voisi tuntua." />
   <title>Eldarisoft AI</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=Inter:wght@900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232563EB'/><text y='.9em' font-size='70' x='15' fill='white'>E</text></svg>" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="logo.png">
 </head>
 <body>
 
@@ -65,14 +66,15 @@
     </div>
 
     <!-- Welcome screen -->
-    <div class="welcome-screen" id="welcomeScreen">
-      <div class="logo-mark welcome-logo-mark">E:\</div>
-      <h1 class="welcome-title">Eldarisoft AI</h1>
-      <p class="welcome-sub">Kokeile miltä yrityksesi oma AI voisi tuntua</p>
-      <div class="welcome-chips">
-        <button class="chip" onclick="sendChip('Mitä Eldarisoft tekee?')">Mitä Eldarisoft tekee?</button>
-        <button class="chip" onclick="sendChip('Miten AI voi auttaa yritystäni?')">Miten AI voi auttaa yritystäni?</button>
-        <button class="chip" onclick="sendChip('Näytä esimerkki chatbotin vastauksesta')">Näytä esimerkki</button>
+    <div id="welcome-screen">
+      <div id="welcome-logo">E:\</div>
+      <h1>Eldarisoft AI</h1>
+      <p>Kokeile miltä yrityksesi oma AI-assistentti voisi tuntua</p>
+      <div class="welcome-suggestions">
+        <button class="suggestion-btn" onclick="sendChip('Mitä Eldarisoft tekee?')">Mitä Eldarisoft tekee?</button>
+        <button class="suggestion-btn" onclick="sendChip('Miten AI voi auttaa yritystäni?')">Miten AI voi auttaa yritystäni?</button>
+        <button class="suggestion-btn" onclick="sendChip('Näytä esimerkki chatbotin vastauksesta')">Näytä esimerkki</button>
+        <button class="suggestion-btn" onclick="sendChip('Mikä on tekoälyn hinta?')">Mikä on tekoälyn hinta?</button>
       </div>
     </div>
 

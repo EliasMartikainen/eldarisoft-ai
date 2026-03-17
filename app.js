@@ -14,7 +14,7 @@ const chatWindow    = document.getElementById('chatWindow');
 const messageInput  = document.getElementById('messageInput');
 const sendBtn       = document.getElementById('sendBtn');
 const charCount     = document.getElementById('charCount');
-const welcomeScreen = document.getElementById('welcomeScreen');
+const welcomeScreen = document.getElementById('welcome-screen');
 
 /* ── Helpers ─────────────────────────────────────────────────── */
 function nowTime() {
@@ -252,12 +252,13 @@ async function sendMessage() {
         const d = await res.json().catch(() => ({}));
         throw new Error(d.error || 'HTTP ' + res.status);
       }
-      const data  = await res.json();
-      const reply = data.reply ?? '';
+      const data       = await res.json();
+      const reply      = data.reply ?? '';
       if (!reply) throw new Error('Tyhjä vastaus');
+      const cleanReply = reply.replace(/\n{2,}/g, '\n').trim();
       removeTypingIndicator();
-      chatWindow.appendChild(createMessage({ role: 'assistant', content: reply }));
-      conversationHistory.push({ role: 'assistant', content: reply });
+      chatWindow.appendChild(createMessage({ role: 'assistant', content: cleanReply }));
+      conversationHistory.push({ role: 'assistant', content: cleanReply });
     } catch (err2) {
       conversationHistory.pop();
       removeTypingIndicator();
