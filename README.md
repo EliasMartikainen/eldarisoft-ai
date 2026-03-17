@@ -2,7 +2,7 @@
 
 > AI chatbot demo for businesses — try it live at [ai.eldarisoft.fi](https://ai.eldarisoft.fi)
 
-![Welcome screen](welcome.png)
+![Welcome screen](chat.png)
 
 ## What it does
 
@@ -12,7 +12,7 @@ A production-ready AI chatbot demo that shows businesses what their own AI assis
 
 🔗 **[ai.eldarisoft.fi](https://ai.eldarisoft.fi)**
 
-![Chat in action](chat.png)
+![Chat in action](welcome.png)
 
 ## Tech stack
 
@@ -24,11 +24,27 @@ A production-ready AI chatbot demo that shows businesses what their own AI assis
 
 ## Architecture
 ```
-User → ai.eldarisoft.fi (AWS S3 + CloudFront)
-     → Cloudflare Worker (rate limiting, hides API key)
-     → Anthropic Claude API
+┌─────────────────┐     HTTPS      ┌──────────────────────┐
+│   User Browser  │ ─────────────► │  AWS S3 + CloudFront │
+│ ai.eldarisoft.fi│                │  (Frontend hosting)  │
+└─────────────────┘                └──────────────────────┘
+         │
+         │ POST /chat
+         ▼
+┌─────────────────────────┐
+│   Cloudflare Worker     │
+│  • Hides API key        │
+│  • Rate limiting        │
+│  • Input validation     │
+└─────────────────────────┘
+         │
+         │ Anthropic API
+         ▼
+┌─────────────────┐
+│   Claude Haiku  │
+│  (LLM response) │
+└─────────────────┘
 ```
-
 ## Security
 
 - API key stored only in Cloudflare environment variables
